@@ -29,7 +29,7 @@ Methods
 
 Copy a folder with its contents.
 
-~~~ .js
+~~~ js
 copy('./node_modules', './foo/bar/baz');
 copy('./node_modules', './foo/bar/baz', 'node_modules.bak');
 ~~~
@@ -38,7 +38,7 @@ copy('./node_modules', './foo/bar/baz', 'node_modules.bak');
 
 Check if file/folder does exist.
 
-~~~ .js
+~~~ js
 if (false !== get('./node_modules')) {
     // …
 }
@@ -48,7 +48,7 @@ if (false !== get('./node_modules')) {
 
 List all files and folders in a folder as object.
 
-~~~ .js
+~~~ js
 // List file(s) only
 console.log(getContent('./node_modules', 1));
 
@@ -69,7 +69,7 @@ console.log(getContent('./node_modules', 'js,mjs', true));
 
 Check if path is a folder.
 
-~~~ .js
+~~~ js
 if (isFolder('./foo/bar/baz')) {
     // …
 }
@@ -79,7 +79,7 @@ if (isFolder('./foo/bar/baz')) {
 
 Delete or move a folder with its contents.
 
-~~~ .js
+~~~ js
 // Delete
 move('./node_modules', false);
 
@@ -97,7 +97,7 @@ move('./node_modules', './foo/bar/baz', 'node_modules.bak');
 
 Get folder name from folder path.
 
-~~~ .js
+~~~ js
 console.log(name('./foo/bar/baz'));
 console.log(name('./foo/bar/baz.qux'));
 ~~~
@@ -106,7 +106,7 @@ console.log(name('./foo/bar/baz.qux'));
 
 Get parent path from folder path.
 
-~~~ .js
+~~~ js
 console.log(parent('./foo/bar/baz'));
 console.log(parent('./'));
 console.log(parent('.'));
@@ -117,6 +117,6 @@ console.log(parent(""));
 
 Create an empty folder if it does not exist.
 
-~~~ .js
+~~~ js
 set('./foo/bar/baz', true);
 ~~~
