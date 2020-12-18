@@ -1,5 +1,5 @@
-Folder
-======
+Folder Utility
+==============
 
 Utility functions of native folder system API in Node.js. Not to be used in the browser.
 
