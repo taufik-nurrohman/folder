@@ -89,7 +89,7 @@ move('./node_modules');
 // Move
 move('./node_modules', './foo/bar/baz');
 
-// Move with a custom name
+// Move
 move('./node_modules', './foo/bar/baz', 'node_modules.bak');
 ~~~
 
