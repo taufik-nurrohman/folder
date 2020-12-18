@@ -70,7 +70,7 @@ console.log(getContent('./node_modules', 'js,mjs', true));
 Check if path is a folder.
 
 ~~~ js
-if (isFolder('./foo/bar/baz')) {
+if (false !== isFolder('./foo/bar/baz')) {
     // …
 }
 ~~~
