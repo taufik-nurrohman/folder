@@ -3,7 +3,7 @@ const {basename, dirname, extname, join, normalize} = require('path');
 
 const {isFunction, isNumber, isSet, isString} = require('@taufik-nurrohman/is');
 
-const isStringEndsWith = (path, x) => {
+const hasExtension = (path, x) => {
     x = x.replace(/\s/g, "").replace(/[,]/g, '|');
     return (new RegExp('\\.(' + x + ')$', 'i')).test(path);
 };
@@ -47,7 +47,7 @@ const getContent = (path, x = null, deep = 0) => {
                 results[scan] = 0;
             }
         } else {
-            if (!isSet(x) || 1 === x || true === x || isString(x) && isStringEndsWith(scan, x)) {
+            if (!isSet(x) || 1 === x || true === x || isString(x) && hasExtension(scan, x)) {
                 results[scan] = 1;
             }
         }
