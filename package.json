@@ -1,0 +1,34 @@
+{
+  "author": "Taufik Nurrohman",
+  "bugs": "https://github.com/taufik-nurrohman/folder/issues",
+  "devDependencies": {
+    "@taufik-nurrohman/is": "^0.0.6",
+    "ava": "^3.14.0"
+  },
+  "description": "Folder system utility.",
+  "exports": {
+    "import": "index.mjs",
+    "require": "index.js"
+  },
+  "files": [
+    "index.js",
+    "index.mjs"
+  ],
+  "homepage": "https://taufik-nurrohman.js.org",
+  "keywords": [
+    "folder",
+    "helper",
+    "utility"
+  ],
+  "license": "MIT",
+  "main": "index.mjs",
+  "name": "@taufik-nurrohman/folder",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taufik-nurrohman/folder.git"
+  },
+  "scripts": {
+    "test": "ava test.mjs"
+  },
+  "version": "0.0.1"
+}
