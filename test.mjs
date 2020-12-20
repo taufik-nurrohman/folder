@@ -1,17 +1,18 @@
+import path from 'path';
 import ava from 'ava';
 import * as f from './index.mjs';
 
 ava.todo('copy');
 
 ava('get', t => {
-    t.is(f.get('./node_modules'), 'node_modules');
+    t.is(f.get('./node_modules'), path.resolve('node_modules'));
     t.is(f.get('./asdf'), false);
 });
 
 ava.todo('getContent');
 
 ava('isFolder', t => {
-    t.is(f.isFolder('./node_modules'), 'node_modules');
+    t.is(f.isFolder('./node_modules'), path.resolve('node_modules'));
     t.is(f.isFolder('./package.json'), false);
 });
 
@@ -23,7 +24,7 @@ ava('name', t => {
 });
 
 ava('parent', t => {
-    t.is(f.parent('./foo/bar/baz'), 'foo/bar');
+    t.is(f.parent('./foo/bar/baz'), path.resolve('foo/bar'));
     t.is(f.parent('./'), null);
     t.is(f.parent('.'), null);
     t.is(f.parent(""), null);

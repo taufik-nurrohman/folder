@@ -1,5 +1,5 @@
 const {copyFileSync, existsSync, mkdirSync, readdirSync, renameSync, rmSync, rmdirSync, statSync} = require('fs');
-const {basename, dirname, extname, join, normalize} = require('path');
+const {basename, dirname, extname, join, normalize, resolve} = require('path');
 
 const {isFunction, isNumber, isSet, isString} = require('@taufik-nurrohman/is');
 
@@ -8,34 +8,29 @@ const hasExtension = (path, x) => {
     return (new RegExp('\\.(' + x + ')$', 'i')).test(path);
 };
 
-const trimEnds = path => {
-    return path.replace(/[\\\/]+$/, "");
-};
-
 const copy = (from, to, name) => {
-    from = trimEnds(from);
-    to = trimEnds(to) + '/' + (name || basename(from));
+    from = resolve(from);
+    to = resolve(join(to, name || basename(from)));
     let scans = getContent(from, null, true);
     if (null !== scans) {
         for (let scan in scans) {
             let end = scan.slice(from.length + 1);
-            set(to + '/' + dirname(end), true);
+            set(join(to, dirname(end)), true);
             if (1 === scans[scan]) {
-                copyFileSync(scan, to + '/' + end);
+                copyFileSync(scan, join(to, end));
             } else {
-                set(to + '/' + end, true);
+                set(join(to, end), true);
             }
         }
     }
 };
 
 const get = path => {
-    return path && existsSync(path) ? normalize(path) : false;
+    return path && existsSync(path) ? resolve(normalize(path)) : false;
 };
 
 const getContent = (path, x = null, deep = 0) => {
-    path = trimEnds(path);
-    if (false === isFolder(path)) {
+    if (false === isFolder(path = resolve(path))) {
         return null;
     }
     let scans = readdirSync(path);
@@ -71,24 +66,24 @@ const getContent = (path, x = null, deep = 0) => {
 };
 
 const isFolder = path => {
-    return get(path) && statSync(path).isDirectory() ? normalize(path) : false;
+    return (path = get(path)) && statSync(path).isDirectory() ? path : false;
 };
 
 const move = (from, to, name) => {
-    from = trimEnds(from);
-    to = trimEnds(to);
+    from = resolve(from);
+    to = resolve(to);
     if (!to) {
         rmSync(from, {
             recursive: true
         });
     } else {
-        to += '/' + (name || basename(from));
+        to = join(to, name || basename(from));
         let scans = getContent(from, 1, true);
         if (null !== scans) {
             for (let scan in scans) {
                 let end = scan.slice(from.length + 1);
-                set(to + '/' + dirname(end), true);
-                renameSync(scan, to + '/' + end);
+                set(join(to, dirname(end)), true);
+                renameSync(scan, join(to, end));
             }
             rmSync(from, {
                 recursive: true
@@ -104,7 +99,7 @@ const name = path => {
 
 const parent = path => {
     let value = dirname(normalize(path));
-    return "" !== value && '.' !== value && '/' !== value ? value : null;
+    return "" !== value && '.' !== value && '/' !== value ? resolve(value) : null;
 };
 
 const set = (path, deep = false) => {
