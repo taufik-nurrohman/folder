@@ -17,7 +17,7 @@ console.log(getContent('./node_modules', 1, true));
 ### ECMAScript
 
 ~~~ js
-import {getContent} = from '@taufik-nurrohman/folder';
+import {getContent} from '@taufik-nurrohman/folder';
 
 console.log(getContent('./node_modules', 1, true));
 ~~~
