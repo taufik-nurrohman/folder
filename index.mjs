@@ -71,12 +71,12 @@ export const isFolder = path => {
 
 export const move = (from, to, name) => {
     from = resolve(from);
-    to = resolve(to);
     if (!to) {
         rmSync(from, {
             recursive: true
         });
     } else {
+        to = resolve(to);
         to = join(to, name || basename(from));
         let scans = getContent(from, 1, true);
         if (null !== scans) {
