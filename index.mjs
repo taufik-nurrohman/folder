@@ -33,16 +33,17 @@ export const getContent = (path, x = null, deep = 0) => {
     if (false === isFolder(path = resolve(path))) {
         return null;
     }
-    let scans = readdirSync(path);
+    let f = isFunction(x),
+        scans = readdirSync(path);
     let results = {};
     for (let scan in scans) {
         let scanIsFolder = false !== isFolder(scan = join(path, scans[scan]));
         if (scanIsFolder) {
-            if (!isSet(x) || 0 === x || false === x) {
+            if (!isSet(x) || 0 === x || false === x || f && x(0, scan)) {
                 results[scan] = 0;
             }
         } else {
-            if (!isSet(x) || 1 === x || true === x || isString(x) && hasExtension(scan, x)) {
+            if (!isSet(x) || 1 === x || true === x || isString(x) && hasExtension(scan, x) || f && x(1, scan)) {
                 results[scan] = 1;
             }
         }
