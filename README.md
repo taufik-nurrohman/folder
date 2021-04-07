@@ -64,7 +64,7 @@ console.log(getContent('./node_modules', 'js,mjs'));
 // List file(s) only with extension `.js` and `.mjs` recursively
 console.log(getContent('./node_modules', 'js,mjs', true));
 
-// List file(s)/folder(s) by filter
+// List file(s)/folder(s) with custom filter
 console.log(getContent('./node_modules', (value, key) => {
     return 1 === value && '.min.js' !== key.slice(-7);
 }, true));
